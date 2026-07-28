@@ -1,6 +1,7 @@
-HR Policy Assistant using Agentic RAG
+# HR Policy Assistant using Agentic RAG
 An enterprise-grade HR Assistant powered by Agentic Retrieval-Augmented Generation (Agentic RAG) that enables employees to ask natural language questions about HR policies and receive accurate, context-aware answers.
-Key Features
+
+# Key Features
 •	Agentic workflow orchestration using LangGraph 
 •	FastAPI REST API 
 •	Hybrid Intent Detection (Rule-based + Semantic) 
@@ -20,7 +21,8 @@ Key Features
 •	Enterprise logging 
 •	Source citation support 
 •	HR API routing (Leave Balance, Payroll, Document Download) 
-Technology Stack
+
+# Technology Stack
 •	Python 
 •	FastAPI 
 •	LangGraph 

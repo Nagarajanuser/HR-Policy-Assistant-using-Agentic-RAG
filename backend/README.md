@@ -111,6 +111,7 @@ python evaluation/evaluate_ragas.py
 
 
 # History-aware Query Rewriting 
+```text
 User Question
       │
       ▼
@@ -134,9 +135,10 @@ is_followup_question()
                                          │
                                          ▼
                                   Hybrid Query Rewrite
-
+```
 
 # My final RAG Application
+```text
                     Start
                       │
                       ▼
@@ -173,3 +175,4 @@ Answer Generation      Hybrid Search
                              │
                              ▼
                             End
+```

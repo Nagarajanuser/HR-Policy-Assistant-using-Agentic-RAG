@@ -276,7 +276,7 @@ for intent, examples in INTENT_EXAMPLES.items():
 # --------------------------------------------------
 # Save Semantic Cache
 # --------------------------------------------------
-#@traceable
+@traceable
 def save_to_semantic_cache(state: GraphState, answer: str):
     logger.info("save_to_semantic_cache: question : %s", state['rewritten_question'].strip())
     logger.info("save_to_semantic_cache: question : %s", state['question'].strip())
@@ -447,7 +447,7 @@ RULE_BASED_INTENTS = {
     ]
 }
 
-#@traceable
+@traceable
 def detect_rule_based(question):
     logger.info( "detect_rule_based : question: %s", question)
     question = normalize_question(question)
@@ -1224,7 +1224,7 @@ def route_after_cache(state):
 # Retrieve Node  (Hybrid Search)
 # --------------------------------------------------
 # Hybrid Search
-#@traceable
+@traceable
 def hybrid_search(
     query: str,
     top_k: int = 30,

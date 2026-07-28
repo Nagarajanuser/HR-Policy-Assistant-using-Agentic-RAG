@@ -106,7 +106,7 @@ uvicorn main:app --reload
 python evaluation/evaluate_ragas.py 
        
 # Recommend a production architecture like this:
-
+```text
                 Upload PDF
                      │
              PyPDFLoader
@@ -134,7 +134,7 @@ python evaluation/evaluate_ragas.py
                 Ollama LLM
                      │
               Final Answer
-
+```
 
 # --------------------------------------------------
 # LLM Query Classification node
@@ -218,171 +218,10 @@ Question:
 {question}
 """
 
-# 
-Validation
-      │
-      ▼
-Intent Detection
-      │
- ┌────┼──────────────┬──────────────┬──────────────┐
- │    │              │              │              │
- ▼    ▼              ▼              ▼              ▼
-Greeting Leave API Payroll API Document API Policy
- │                                            │
- ▼                                            ▼
-Generate                               Classification
-                                              │
-                                              ▼
-                                          Retrieval
-                                              │
-                                              ▼
-                                           Rerank
-                                              │
-                                              ▼
-                                           Generate
-
-
-
-# After Semantic Cache
-User Question
-      │
-      ▼
-Question Validation
-      │
-      ▼
-Intent Detection
-      │
-      ▼
-LLM Classification
-      │
-      ▼
-Semantic Cache Lookup
-      │
-      ├──────────────► Cache Hit
-      │                    │
-      │                    ▼
-      │              Return Cached Answer
-      │
-      └──────────────► Cache Miss
-                           │
-                           ▼
-                    Hybrid Search
-                           │
-                           ▼
-                        Reranking
-                           │
-                           ▼
-                      LLM Generation
-                           │
-                           ▼
-                  Save to Semantic Cache
-                           │
-                           ▼
-                     Return Answer
-
-# After Hybrid Query Rewriting
-User Question
-        │
-        ▼
-Question Validation
-        │
-        ▼
-Hybrid Intent Detection
-        │
-        ▼
-LLM Query Classification
-        │
-        ▼
-Hybrid Query Rewriting
-        │
-        ▼
-Semantic Cache Lookup
-        │
-   ┌────┴────┐
-   │         │
-Cache Hit   Cache Miss
-   │         │
-   ▼         ▼
-Return    Hybrid Search
-             │
-             ▼
-       CrossEncoder Rerank
-             │
-             ▼
-      Answer Generation
-             │
-             ▼
-     Save Semantic Cache
-
-
-
-# History-aware Query Rewriting 
-Question Validation
-        ↓
-Intent Detection
-        ↓
-LLM Query Classification
-        ↓
-History-aware Query Rewriting   <-- NEW
-        ↓
-Hybrid Query Rewriting
-        ↓
-Semantic Cache
-        ↓
-Hybrid Search
-        ↓
-Reranking
-        ↓
-Generate
-
-
-# History-aware Query Rewriting 
-Question Validation
-        ↓
-Intent Detection
-        ↓
-LLM Query Classification
-        ↓
-History-aware Query Rewriting
-        ↓
-Hybrid Query Rewriting
-        ↓
-Semantic Cache
-        ↓
-Hybrid Search
-        ↓
-Cross Encoder Reranking
-        ↓
-Answer Generation
-
-
-# History-aware Query Rewriting 
-User Question
-      │
-      ▼
-History Rewrite Node
-      │
-      ▼
-is_followup_question()
-      │
-      ├────────── False ──────────► history_question = original question
-      │                                  │
-      │                                  ▼
-      │                           Hybrid Query Rewrite
-      │
-      └────────── True ───────────► Load Chat History
-                                         │
-                                         ▼
-                                  History Rewrite LLM
-                                         │
-                                         ▼
-                                 history_question
-                                         │
-                                         ▼
-                                  Hybrid Query Rewrite
 
 
 # My final RAG Application
+```text
                     Start
                       │
                       ▼
@@ -419,3 +258,4 @@ Answer Generation      Hybrid Search
                              │
                              ▼
                             End
+```
