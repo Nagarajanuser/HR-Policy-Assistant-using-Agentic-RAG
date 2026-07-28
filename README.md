@@ -9,15 +9,30 @@
 [![LangSmith](https://img.shields.io/badge/LangSmith-Observability-black.svg)](https://www.langchain.com/langsmith)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
 
-An enterprise-grade, autonomous **Agentic RAG (Retrieval-Augmented Generation)** platform designed to answer employee HR policy queries with precision, strict document verification, zero hallucination, and real-time backend API integration.
+Developed an enterprise-grade HR Policy Assistant leveraging **Agentic Retrieval-Augmented Generation (Agentic RAG)** to provide employees with accurate, context-aware answers to HR policy queries through natural language interactions. Designed and implemented an intelligent multi-stage RAG pipeline using **LangGraph** for workflow orchestration, integrating **hybrid intent detection**, **history-aware query rewriting**, **semantic caching**, **hybrid retrieval**, and **LLM-based response generation**. The solution intelligently routes user requests to HR APIs (Leave Balance, Payroll ) or the RAG pipeline, improving response accuracy, reducing latency, and optimizing LLM inference costs.
 
-Built with **LangGraph**, **FastAPI**, **Pinecone Hybrid Search**, **BGE Embeddings**, **BM25 Sparse Encoding**, **Cross-Encoder Reranking**, **Semantic Caching**, and an **Angular 17 SPA Frontend**.
+> [!NOTE]
+> **Project Core Objective**: Streamline enterprise employee query resolution through autonomous Agentic workflow orchestration, eliminating static search friction and guaranteeing factual accuracy with verifiable policy citations.
+
+## 🚀 Key Architectural Contributions & Features
+
+* 🧠 **Agentic LangGraph Orchestration**: Architected a stateful multi-node RAG pipeline using **LangGraph** with dynamic conditional branching and state graph transitions.
+* ⚡ **High-Performance FastAPI Services**: Engineered asynchronous RESTful APIs for real-time HR query processing, session management, and external API routing.
+* 🔀 **Hybrid Intent Detection & Routing**: Combined rule-based logic with semantic similarity and LLM query classification to dynamically route queries between direct HR APIs (*Leave Balance, Payroll*) and the RAG engine.
+* 📝 **Contextual Query Rewriting Engine**: Developed History-Aware, Hybrid, and Canonical Query Rewriting modules to resolve coreferences and optimize follow-up question retrieval.
+* 🚀 **Pinecone Semantic Caching**: Implemented a vector semantic cache to bypass LLM calls for repeated/similar queries, drastically reducing response latency (<200ms) and operational costs.
+* 🔍 **Hybrid Search & Cross-Encoder Reranking**: Built a two-stage retrieval engine combining **BGE Dense Embeddings**, **BM25 Sparse Keyword Search**, and **Cross-Encoder Reranking** (`ms-marco-MiniLM-L-6-v2`) for ultra-precise context extraction.
+* 🛡️ **Role & Metadata-Based Filtering**: Enforced fine-grained metadata filters (department, location, access role, document type) ensuring strict enterprise data security and personalized retrieval.
+* 📄 **Automated PDF Ingestion Pipeline**: Created an end-to-end document processor utilizing recursive text splitting, dense/sparse vector encoding, and automated Pinecone indexing.
+* 💾 **Persistent Chat Memory**: Integrated **MySQL** database storage for multi-turn session persistence, audit tracking, and conversation continuity.
+* 🔒 **Local Inference & Observability**: Configured **Ollama Local LLM** (Llama 3/Mistral) for privacy-compliant, on-premises inference, paired with **LangSmith** for full execution tracing and latency debugging.
+* 🏆 **Production-Grade Engineering**: Enforced modular domain-driven architecture, robust error handling, structured logging, dynamic environment configurations, and continuous citation verification.
 
 ---
 
 ## 📋 Table of Contents
 1. [Executive Summary & Business Impact](#-executive-summary--business-impact)
-2. [Why This Project Attracts HR & Technical Leaders](#-why-this-project-attracts-hr--technical-leaders)
+2. [Highlights](#-highlights)
 3. [System Architecture Block Diagram](#-system-architecture-block-diagram)
 4. [End-to-End Agentic Working Flow](#-end-to-end-agentic-working-flow)
 5. [Key Technical Features & AI Innovations](#-key-technical-features--ai-innovations)
@@ -45,15 +60,12 @@ In large organizations, HR departments receive thousands of repetitive inquiries
 
 ---
 
-## 🎯 Why This Project Attracts HR & Technical Leaders
+## 🎯 Highlights
 
-### 👔 For HR Leaders & Executive Stakeholders
 * **Verified Document Citations**: Every answer provides clickable source references (PDF document name, section, and page number), enabling complete auditability and policy transparency.
 * **Intelligent Intent Routing**: Distinguishes between document policy inquiries (e.g., *"What is the parental leave duration?"*) and transactional requests (e.g., *"Check my remaining casual leave balance"*), routing transactional queries straight to live HR APIs.
 * **Enterprise Guardrails & Policy Security**: Out-of-scope, inappropriate, or malicious queries are automatically detected and blocked at the validation entry node.
 * **Employee Sentiment & Feedback Loop**: Native feedback mechanisms allow employees to rate responses, giving HR teams analytics to continuously refine policy clarity.
-
-### 🛠️ For Technical Recruiters, AI Architects & Engineering Managers
 * **Agentic Graph Workflow (LangGraph)**: Built using `StateGraph` with stateful condition edges rather than brittle linear chains, allowing dynamic branching, retries, and modular node executions.
 * **Hybrid Retrieval (Dense + Sparse)**: Combines **BGE Dense Vectors** (semantic similarity) with **BM25 Sparse Vectors** (exact keyword matching) and **Pinecone Convex Scaling** for unmatched retrieval recall.
 * **Two-Stage Reranking Pipeline**: Uses `CrossEncoder` models (`ms-marco-MiniLM-L-6-v2` / `bge-reranker-large`) to eliminate irrelevant retrieved chunks before LLM context generation.
