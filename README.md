@@ -3,6 +3,7 @@ Developed an enterprise-grade HR Policy Assistant leveraging Agentic Retrieval-A
 
 
 # Key Responsibilities & Features:
+```text
 Designed and implemented an Agentic RAG architecture using LangGraph with multi-step workflow orchestration.
 Built RESTful APIs using FastAPI for HR policy search, conversation management, and API routing.
 Implemented Hybrid Intent Detection (Rule-based + Semantic Similarity) and LLM-based Query Classification to route requests between HR APIs and the RAG pipeline.
@@ -14,7 +15,7 @@ Developed a multi-document PDF ingestion pipeline with document chunking, embedd
 Integrated MySQL for conversation history, enabling context-aware interactions and persistent chat memory.
 Used Ollama Local LLM for secure on-premises inference and LangSmith for tracing, monitoring, and debugging AI workflows.
 Implemented enterprise-grade logging, environment-based configuration, source citation, and modular architecture following production best practices.
-
+```
 
 # Technology Stack
 •	Python 
