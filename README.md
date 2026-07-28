@@ -25,7 +25,7 @@ Developed an enterprise-grade HR Policy Assistant leveraging **Agentic Retrieval
 * 🛡️ **Role & Metadata-Based Filtering**: Enforced fine-grained metadata filters (department, location, access role, document type) ensuring strict enterprise data security and personalized retrieval.
 * 📄 **Automated PDF Ingestion Pipeline**: Created an end-to-end document processor utilizing recursive text splitting, dense/sparse vector encoding, and automated Pinecone indexing.
 * 💾 **Persistent Chat Memory**: Integrated **MySQL** database storage for multi-turn session persistence, audit tracking, and conversation continuity.
-* 🔒 **Local Inference & Observability**: Configured **Ollama Local LLM** (Llama 3/Mistral) for privacy-compliant, on-premises inference, paired with **LangSmith** for full execution tracing and latency debugging.
+* 🔒 **Local Inference & Observability**: Configured **Ollama Local LLM** (qwen2.5:1.5b) for privacy-compliant, on-premises inference, paired with **LangSmith** for full execution tracing and latency debugging.
 * 🏆 **Production-Grade Engineering**: Enforced modular domain-driven architecture, robust error handling, structured logging, dynamic environment configurations, and continuous citation verification.
 
 ---
@@ -364,6 +364,49 @@ To convert raw HR policy documents into a high-performance hybrid vector index, 
                             ▼
              [ Pinecone Hybrid Upsert ]
              (Dense Vectors + Sparse Indices + Metadata Store)
+             
+```
+
+## 📄 User Query Flow
+
+```text
+                   Start
+                      │
+                      ▼
+            Question Validation
+                      │
+                      ▼
+     Hybrid Intent Detection (Rule + Semantic)
+          ├──────────────┬──────────────┬──────────────┐
+          │              │              │              │
+          ▼              ▼              ▼              ▼
+   LLM Query      Leave API     Payroll API    Document API
+ Classification         │              │              │
+          │             │              │              │
+          ▼             └─────── End ──┴────── End ───┘
+ History-aware Query Rewrite
+          │
+          ▼
+ Hybrid Query Rewrite
+          │
+          ▼
+ Semantic Cache Lookup
+     ┌───────────┴───────────┐
+     │                       │
+ Cache Hit              Cache Miss
+     │                       │
+     ▼                       ▼
+Answer Generation      Hybrid Search
+                             │
+                             ▼
+                 Cross-Encoder Reranking
+                             │
+                             ▼
+                   Answer Generation
+                             │
+                             ▼
+                            End
+             
 ```
 
 ---
