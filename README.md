@@ -40,8 +40,6 @@ Developed an enterprise-grade HR Policy Assistant leveraging **Agentic Retrieval
 7. [Document Ingestion Pipeline](#-document-ingestion-pipeline)
 8. [Evaluation Framework (RAGAS & LangSmith)](#-evaluation-framework-ragas--langsmith)
 9. [Installation & Setup Guide](#-installation--setup-guide)
-10. [API Reference & Schema](#-api-reference--schema)
-11. [Iterative Development Journey](#-iterative-development-journey)
 
 ---
 
@@ -536,63 +534,3 @@ The interactive Swagger API documentation will be available at: `http://localhos
 The frontend application will open automatically at: `http://localhost:4200`
 
 ---
-
-## 📡 API Reference & Schema
-
-### Core Endpoints
-
-#### 1. Execute HR Chat Inquiry
-* **HTTP Method**: `POST`
-* **Endpoint**: `/api/v1/chat`
-* **Request Body**:
-  ```json
-  {
-    "question": "What is the policy for working from home during emergency conditions?",
-    "session_id": "sess-883920-abc",
-    "category_filter": "Work From Home"
-  }
-  ```
-* **Response Body**:
-  ```json
-  {
-    "answer": "According to the Remote Work & WFH Policy (Section 4.2), employees are eligible for up to 5 days of remote work per month under emergency conditions...",
-    "citations": [
-      {
-        "document_name": "WFH_and_Remote_Work_Policy_2024.pdf",
-        "page_number": 4,
-        "section": "Section 4.2: Emergency Remote Work"
-      }
-    ],
-    "intent": "Policy Information",
-    "category": "Work From Home",
-    "cached": false,
-    "execution_time_ms": 840
-  }
-  ```
-
-#### 2. Upload Policy Document (Admin)
-* **HTTP Method**: `POST`
-* **Endpoint**: `/api/v1/upload`
-* **Form Data**: `file` (PDF), `category` (string)
-
-#### 3. Health & System Status
-* **HTTP Method**: `GET`
-* **Endpoint**: `/api/v1/health`
-
----
-
-## 🧪 Iterative Development Journey
-
-This repository documents the step-by-step engineering progression of building an enterprise-grade AI solution:
-
-* **Level 1 (`backend2/level_1_codes/`)**: Standard linear RAG pipeline using naive cosine vector search and simple LLM prompting.
-* **Level 2 (`backend2/level_2_codes/`)**: Integration of BM25 sparse keyword encoding, hybrid intent detection, rule-based routers, and initial history-aware query rewriting.
-* **Level 3 (Current Production - `backend/` & `backend2/main.py`)**: Full **LangGraph Agentic State Graph** featuring two-stage Cross-Encoder reranking, vector semantic caching, automated RAGAS evaluation, LangSmith tracing, and full-stack Angular UI integration.
-
----
-
-## 🤝 Contributing & License
-
-Distributed under the **MIT License**. See `LICENSE` for details.
-
-Developed with ❤️ by **Nagarajan** & AI Engineering Team.
